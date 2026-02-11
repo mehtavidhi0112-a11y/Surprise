@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Suarabh ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* 🔐 LOCK SCREEN */
+#lockScreen {
+    height: 100vh;
+    background: url("lock.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    backdrop-filter: brightness(0.7);
+}
+
+#lockScreen input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#lockScreen button {
+    padding: 10px 25px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff6f91;
+    cursor: pointer;
+}
+
+#error {
+    margin-top: 10px;
+    color: #ffdddd;
+}
+
+/* 💕 MAIN CONTENT */
+#mainContent {
+    display: none;
+    background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+    color: white;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+section {
+    padding: 60px 20px;
+}
+
+/* 📸 RECTANGLE PHOTOS */
+.photo {
+    width: 90%;
+    max-width: 420px;
+    height: 260px;
+    margin: 25px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🎥 VIDEO */
+video {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* 🤗 CARTOON HUG */
+.cartoon {
+    width: 280px;
+    margin: 30px auto;
+    animation: hug 2s ease-in-out infinite;
+}
+
+.cartoon img {
+    width: 100%;
+}
+
+@keyframes hug {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 💌 NOTES */
+.notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.note {
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 15px;
+    width: 220px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ⏳ DAYS */
+.counter {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* 💖 HEARTS */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    animation: rise 5s linear infinite;
+}
+
+@keyframes rise {
+    0% { transform: translateY(0); opacity: 1;}
+    100% { transform: translateY(-100vh); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOCK SCREEN -->
+<div id="lockScreen">
+    <h1>🔐 Private Birthday Surprise</h1>
+    <p>Only Suarabh can unlock this ❤️</p>
+    <input type="password" id="password" placeholder="Enter the magic word">
+    <button onclick="checkPassword()">Unlock ❤️</button>
+    <p id="error"></p>
+</div>
+
+<!-- 💕 MAIN CONTENT -->
+<div id="mainContent">
+
+<section>
+    <h1>Happy Birthday Suarabh ❤️</h1>
+    <p>You are my favorite chapter in my life 💕</p>
+</section>
+
+<section>
+    <div class="counter">❤️ 220 Days Together ❤️</div>
+    <p>7 months & 10 days of us</p>
+</section>
+
+<section>
+    <div class="cartoon">
+        <img src="cartoon.png" alt="Hugging Cartoon">
+    </div>
+    <p>Every day feels warmer with you 🤍</p>
+</section>
+
+<section class="notes">
+    <div class="note">You are my safe place 🤍</div>
+    <div class="note">I choose you, every single day 💖</div>
+    <div class="note">With you, love feels easy 🌸</div>
+    <div class="note">Forever feels right with you ❤️</div>
+</section>
+
+<section>
+    <h2>✨ The First Time We Met ✨</h2>
+    <div class="photo">
+        <img src="first.jpg">
+    </div>
+</section>
+
+<section>
+    <h2>💑 Us Now 💑</h2>
+    <div class="photo">
+        <img src="now.jpg">
+    </div>
+</section>
+
+<section>
+    <h2>🎥 Our Beautiful Memories 🎥</h2>
+    <video controls>
+        <source src="memory.mp4" type="video/mp4">
+    </video>
+</section>
+
+<section>
+    <h2>🌙 Make a wish…</h2>
+    <p>I already did.<br>I wished for us. ❤️</p>
+</section>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+const correctPassword = "my men";
+
+function checkPassword() {
+    const entered = document.getElementById("password").value.toLowerCase().trim();
+
+    if (entered === correctPassword) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("bgMusic").play();
+        setInterval(createHeart, 500);
+    } else {
+        document.getElementById("error").innerText = "Wrong password 😜 Try again!";
+    }
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}
+</script>
+
+</body>
+</html>
