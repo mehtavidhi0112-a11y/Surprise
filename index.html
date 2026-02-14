@@ -50,47 +50,32 @@ body {
 /* 💙 MAIN CONTENT */
 #mainContent {
     display: none;
-    background-color: #021b33; /* darker deep blue */
+    background-color: #021b33;
     color: #fff;
     text-align: center;
     padding-bottom: 60px;
     position: relative;
 }
 
-/* subtle hearts background */
-#mainContent::before {
-    content: "🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
-    position: absolute;
-    inset: 0;
-    opacity: 0.04;
-    pointer-events: none;
-}
-
-#mainContent > * {
-    position: relative;
-    z-index: 1;
-}
-
 section {
     padding: 60px 20px;
 }
 
-/* 📸 PHOTOS – FACE SAFE */
+/* 📸 PHOTOS */
 .photo {
     width: 90%;
     max-width: 420px;
-    height: 360px; /* increased height */
+    height: 360px;
     margin: 25px auto;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 .photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top; /* face visible */
+    object-position: center top;
 }
 
 /* 🤗 CARTOON */
@@ -99,8 +84,6 @@ section {
     max-width: 420px;
     height: 280px;
     margin: 25px auto;
-    border-radius: 20px;
-    overflow: hidden;
 }
 
 .cartoon img {
@@ -109,13 +92,7 @@ section {
     object-fit: contain;
 }
 
-/* ⏳ COUNTER */
-.counter {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* 💌 FLIP NOTES */
+/* 💌 NOTES */
 .notes-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -151,18 +128,16 @@ section {
     align-items: center;
     justify-content: center;
     backface-visibility: hidden;
-    font-size: 16px;
 }
 
 .flip-card-front {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.2);
 }
 
 .flip-card-back {
     background: white;
     color: #333;
     transform: rotateY(180deg);
-    font-weight: 600;
 }
 
 /* 💌 LETTER */
@@ -182,35 +157,14 @@ section {
     margin-top: 15px;
     padding: 20px;
     border-radius: 12px;
-    line-height: 1.7;
 }
 
-/* 🖤 LOVE BOXES */
-.love-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.love-box {
-    width: 100px;
-    height: 80px;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* 🤍 FLOATING HEARTS */
+/* 🤍 HEARTS */
 .heart {
     position: fixed;
     bottom: -10px;
     font-size: 18px;
-    animation: rise 5s linear infinite;
-    color: white;
+    animation: rise 5s linear;
 }
 
 @keyframes rise {
@@ -238,10 +192,6 @@ section {
 </section>
 
 <section>
-<div class="counter">❤️ 7 Months & 10 Days ❤️</div>
-</section>
-
-<section>
 <div class="cartoon">
 <img src="cartoon.png">
 </div>
@@ -254,6 +204,59 @@ section {
 <div class="flip-card-inner">
 <div class="flip-card-front">Tap 💕</div>
 <div class="flip-card-back">You are my safe place ❤️</div>
-</div></div>
+</div>
+</div>
+</div>
+</section>
 
-<div cla
+<section>
+<div class="letter-box" onclick="toggleLetter()">
+Tap to open my letter 💌
+<div class="letter-content" id="letter">
+I love you more than words can explain 🤍
+</div>
+</div>
+</section>
+
+</div>
+
+<!-- ✅ SCRIPT (THIS WAS MISSING) -->
+<script>
+const correctPassword = "my men";
+
+function checkPassword() {
+    const entered = document.getElementById("password").value
+        .toLowerCase()
+        .trim();
+
+    if (entered === correctPassword) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        setInterval(createHeart, 600);
+    } else {
+        document.getElementById("error").innerText = "Wrong password 😜";
+    }
+}
+
+function flipNote(card) {
+    card.classList.toggle("flipped");
+}
+
+function toggleLetter() {
+    const letter = document.getElementById("letter");
+    letter.style.display =
+        letter.style.display === "block" ? "none" : "block";
+}
+
+function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "🤍";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+}
+</script>
+
+</body>
+</html>
