@@ -1,48 +1,53 @@
 <script>
-const correctPassword = "saurabh";
+document.addEventListener("DOMContentLoaded", function () {
 
-function checkPassword() {
-    const input = document.getElementById("password");
-    const entered = input.value.trim().toLowerCase();
+    const correctPassword = "saurabh";
 
-    if (entered === correctPassword) {
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        startHearts();
-    } else {
-        document.getElementById("error").innerText =
-            "Wrong password 💔 Try again";
+    // make function global so button + enter both work
+    window.checkPassword = function () {
+        const input = document.getElementById("password");
+        const entered = input.value.trim().toLowerCase();
+
+        if (entered === correctPassword) {
+            document.getElementById("lockScreen").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+            startHearts();
+        } else {
+            document.getElementById("error").innerText =
+                "Wrong password 💔 Try again";
+        }
+    };
+
+    // ENTER key FIX ✅
+    const passwordInput = document.getElementById("password");
+    passwordInput.addEventListener("keyup", function (e) {
+        if (e.key === "Enter") {
+            checkPassword();
+        }
+    });
+
+    window.flipNote = function(card) {
+        card.classList.toggle("flipped");
+    };
+
+    window.toggleLetter = function() {
+        const letter = document.getElementById("letter");
+        letter.style.display =
+            letter.style.display === "block" ? "none" : "block";
+    };
+
+    function startHearts() {
+        setInterval(createHeart, 700);
     }
-}
 
-/* allow ENTER key */
-document.getElementById("password").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        checkPassword();
+    function createHeart() {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "🤍";
+        h.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 5000);
     }
+
 });
-
-function flipNote(card) {
-    card.classList.toggle("flipped");
-}
-
-function toggleLetter() {
-    const letter = document.getElementById("letter");
-    letter.style.display =
-        letter.style.display === "block" ? "none" : "block";
-}
-
-/* hearts after unlock */
-function startHearts() {
-    setInterval(createHeart, 700);
-}
-
-function createHeart() {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "🤍";
-    h.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 5000);
-}
 </script>
