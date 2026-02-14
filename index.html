@@ -13,16 +13,7 @@ body {
 }
 
 /* LOCK SCREEN */
-#lockScreen {
-    height: 100vh;
-    background: url("images/lock.jpg") center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-}
+
 
 #lockScreen input {
     padding: 12px;
@@ -31,7 +22,19 @@ body {
     margin-top: 15px;
 }
 
-#lockScreen button {
+#lockScreen button {#lockScreen {
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("images/lock.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
     padding: 10px 25px;
     margin-top: 15px;
     border-radius: 20px;
