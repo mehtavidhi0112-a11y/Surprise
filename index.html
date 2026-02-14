@@ -22,7 +22,7 @@ body {
     flex-direction: column;
     text-align: center;
     color: white;
-    backdrop-filter: brightness(0.7);
+    backdrop-filter: brightness(0.6);
 }
 
 #lockScreen input {
@@ -30,7 +30,6 @@ body {
     border-radius: 20px;
     border: none;
     margin-top: 15px;
-    text-align: center;
 }
 
 #lockScreen button {
@@ -39,20 +38,14 @@ body {
     border: none;
     border-radius: 20px;
     background: white;
-    color: #ff6f91;
     cursor: pointer;
-}
-
-#error {
-    margin-top: 10px;
-    color: #ffdddd;
 }
 
 /* 💕 MAIN CONTENT */
 #mainContent {
     display: none;
-    background: linear-gradient(to bottom right, #fceabb, #f8b500);
-    color: #333;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    color: #f5f5f5;
     text-align: center;
     padding-bottom: 40px;
 }
@@ -61,54 +54,21 @@ section {
     padding: 60px 20px;
 }
 
-/* 📸 RECTANGLE PHOTOS */
-.photo {
+/* 📸 PHOTOS */
+.photo, .cartoon {
     width: 90%;
     max-width: 420px;
     height: 260px;
     margin: 25px auto;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-.photo img {
+.photo img, .cartoon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-/* 🎥 VIDEO */
-video {
-    width: 90%;
-    max-width: 500px;
-    border-radius: 20px;
-    margin-top: 20px;
-}
-
-/* 🤗 CARTOON (static for now) */
-.cartoon {
-    width: 90%;
-    max-width: 420px;
-    height: 260px;
-    margin: 25px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.cartoon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #f5f5f5; /* soft neutral background */
-}
-
-
-/* ⏳ DAYS COUNTER */
-.counter {
-    font-size: 28px;
-    font-weight: bold;
 }
 
 /* 💌 FLIP NOTES */
@@ -117,11 +77,10 @@ video {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     max-width: 500px;
-    margin: 30px auto 0;
+    margin: auto;
 }
 
 .flip-card {
-    background-color: transparent;
     width: 220px;
     height: 140px;
     perspective: 1000px;
@@ -129,7 +88,6 @@ video {
 }
 
 .flip-card-inner {
-    position: relative;
     width: 100%;
     height: 100%;
     transition: transform 0.6s;
@@ -147,137 +105,111 @@ video {
     border-radius: 15px;
     backface-visibility: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    font-size: 16px;
 }
 
 .flip-card-front {
-    background: rgba(255,255,255,0.25);
-    color: #333;
+    background: rgba(255,255,255,0.15);
 }
 
 .flip-card-back {
-    background: rgba(255, 255, 224, 0.9);
-    color: #b35f1d;
+    background: #f1f1f1;
+    color: #333;
     transform: rotateY(180deg);
-    font-weight: 600;
-    text-align: center;
 }
 
-/* 💖 FLOATING HEARTS */
-.heart {
-    position: fixed;
-    bottom: -10px;
+/* 🌙 FINAL MESSAGE */
+.final-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.love-letter {
+    max-width: 800px;
     font-size: 20px;
-    animation: rise 5s linear infinite;
-}
-
-@keyframes rise {
-    0% { transform: translateY(0); opacity: 1;}
-    100% { transform: translateY(-100vh); opacity: 0;}
-}
-
-/* ✨ Final wish text center */
-.final-wish {
+    line-height: 1.8;
     text-align: center;
-    font-size: 22px;
-    font-weight: 600;
-    margin-top: 20px;
+    white-space: pre-line;
+}
+
+/* ✨ STARS */
+.star {
+    position: fixed;
+    top: -10px;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: fall 5s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔐 LOCK SCREEN -->
 <div id="lockScreen">
     <h1>🔐 Happy Birthday Surprise</h1>
-    <p>Only Saurabh can unlock this ❤️</p>
     <input type="password" id="password" placeholder="Enter the magic word">
     <button onclick="checkPassword()">Unlock ❤️</button>
-    <p id="try again my love"></p>
 </div>
 
-<!-- 💕 MAIN CONTENT -->
 <div id="mainContent">
 
 <section>
     <h1>Happy Birthday Saurabh ❤️</h1>
-    <p>You are my favorite chapter in my life 💕</p>
-</section>
-
-<section>
-    <div class="counter">❤️ 220 Days Together ❤️</div>
-    <p>7 months & 10 days of us</p>
+    <p>You are my favorite chapter in my life</p>
 </section>
 
 <section>
     <div class="cartoon">
-        <img src="cartoon.png" alt="Hugging Cartoon">
+        <img src="cartoon.png">
     </div>
-    <p>Every day feels warmer with you 🤍</p>
 </section>
 
-<!-- 💌 FLIP NOTES -->
 <section>
-    <h2>💌 Little Notes for You 💌</h2>
+    <h2>💌 Little Notes</h2>
     <div class="notes-grid">
-        <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
+                <div class="flip-card-front">Tap</div>
                 <div class="flip-card-back">You are my safe place ❤️</div>
             </div>
         </div>
-
-        <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">In every lifetime, I would still choose you.</div>
+                <div class="flip-card-front">Tap</div>
+                <div class="flip-card-back">I choose you in every lifetime</div>
             </div>
         </div>
-
-        <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">With you, even silence feels peaceful.</div>
+                <div class="flip-card-front">Tap</div>
+                <div class="flip-card-back">Silence feels peaceful with you</div>
             </div>
         </div>
-
-        <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">You are my favorite part of every day.</div>
+                <div class="flip-card-front">Tap</div>
+                <div class="flip-card-back">You are my favorite every day</div>
             </div>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>✨ The First Time We Met ✨</h2>
-    <div class="photo">
-        <img src="first.jpg">
-    </div>
-</section>
-
-<section>
-    <h2>💑 Us Now 💑</h2>
-    <div class="photo">
-        <img src="now.jpg">
-    </div>
-</section>
-
-<section>
-    <h2>🎥 Our Beautiful Memories 🎥</h2>
-    <video controls>
-        <source src="memory.mp4" type="video/mp4">
-    </video>
-</section>
-
-<section class="final-wish">
-    <p>🌙i hope this birthday is just the beginning of our most beautiful chapter yet. happy birthday to my men. ❤️</p>
+<section id="finalSection" class="final-section">
+    <div id="typedText" class="love-letter"></div>
 </section>
 
 <audio id="bgMusic" loop>
@@ -288,36 +220,48 @@ video {
 
 <script>
 const correctPassword = "my men";
+const message = `Saurabh, my baby…
 
-/* FLIP NOTE FUNCTION */
-function flipNote(card) {
-    card.classList.toggle("flipped");
-}
+Do you remember the very first time I came to meet you?
+I was a nervous wreck on that flight.
 
-/* HEARTS */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-}
+But the moment I saw you,
+everything felt calm and right.
 
-/* CHECK PASSWORD */
+Thank you for being my home,
+my comfort, my safe place.
+
+I love you and miss you so much.
+
+Happy Birthday, my baby ❤️`;
+
 function checkPassword() {
-    const entered = document.getElementById("password").value.toLowerCase().trim();
-
-    if (entered === correctPassword) {
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        document.getElementById("bgMusic").play();
-        setInterval(createHeart, 500);
-    } else {
-        document.getElementById("error").innerText = "Wrong password 😜 Try again!";
+    if (password.value.toLowerCase().trim() === correctPassword) {
+        lockScreen.style.display = "none";
+        mainContent.style.display = "block";
+        bgMusic.play();
+        startTyping();
+        setInterval(createStar, 200);
     }
+}
+
+function startTyping() {
+    let i = 0;
+    const el = document.getElementById("typedText");
+    const interval = setInterval(() => {
+        el.textContent += message[i];
+        i++;
+        if (i >= message.length) clearInterval(interval);
+    }, 40);
+}
+
+function createStar() {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = Math.random() * 3 + 3 + "s";
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 6000);
 }
 </script>
 
