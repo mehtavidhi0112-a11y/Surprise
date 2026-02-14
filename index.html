@@ -3,28 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Suarabh ❤️</title>
-
+<title>Happy Birthday Saurabh ❤️</title>
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     overflow-x: hidden;
-    background: #004d6b; /* dark teal */
-    position: relative;
-}
-
-/* small white hearts in background */
-body::before {
-    content: "❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
-    position: fixed;
-    top: 0;
-    left: 0;
-    font-size: 12px;
-    opacity: 0.1;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
 }
 
 /* LOCK SCREEN */
@@ -58,6 +42,7 @@ body::before {
     cursor: pointer;
 }
 
+/* ERROR MESSAGE */
 #error {
     margin-top: 10px;
     color: #ffdddd;
@@ -66,7 +51,10 @@ body::before {
 /* MAIN CONTENT */
 #mainContent {
     display: none;
-    color: #fff;
+    background-color: #004466; /* dark teal */
+    background-image: radial-gradient(white 2px, transparent 2px);
+    background-size: 20px 20px; /* tiny white hearts effect */
+    color: white;
     text-align: center;
     padding-bottom: 40px;
 }
@@ -75,7 +63,7 @@ section {
     padding: 40px 20px;
 }
 
-/* IMAGES */
+/* PHOTOS */
 .photo, .cartoon {
     width: 90%;
     max-width: 420px;
@@ -90,34 +78,36 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center; /* face visible */
 }
 
 /* COUNTER */
 .counter {
     font-size: 28px;
     font-weight: bold;
-    color: #ffebcd;
 }
 
 /* FLIP NOTES */
-.notes-grid, .love-boxes {
-    display: flex;
-    justify-content: center;
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    max-width: 500px;
+    margin: 30px auto 0;
 }
 
 .flip-card {
     background-color: transparent;
+    width: 220px;
+    height: 140px;
     perspective: 1000px;
     cursor: pointer;
 }
 
 .flip-card-inner {
     position: relative;
-    width: 220px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
@@ -141,84 +131,54 @@ section {
 }
 
 .flip-card-front {
-    background: rgba(255,255,255,0.25);
-    color: #fff;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-weight: bold;
 }
 
 .flip-card-back {
-    background: rgba(255, 255, 224, 0.9);
-    color: #b35f1d;
+    background: #fff;
+    color: #333;
     transform: rotateY(180deg);
     font-weight: 600;
     text-align: center;
 }
 
-/* SMALL LOVE BOXES */
-.love-boxes .flip-card {
-    width: 90px;
-    height: 90px;
+/* CLICKABLE LETTER BOXES */
+.letter-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 500px;
 }
 
-.love-boxes .flip-card-front, .love-boxes .flip-card-back {
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.love-boxes .flip-card-front {
+.letter-box {
     background: black;
     color: white;
-}
-
-.love-boxes .flip-card-back {
-    background: black;
-    color: #ff6f91;
-}
-
-/* HEARTS */
-.heart {
-    position: fixed;
-    bottom: -10px;
-    font-size: 20px;
-    animation: rise 5s linear infinite;
-}
-
-@keyframes rise {
-    0% { transform: translateY(0); opacity: 1;}
-    100% { transform: translateY(-100vh); opacity: 0;}
-}
-
-/* COLLAPSIBLE LETTER */
-.collapsible {
-    background: #222;
-    color: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: 15px;
-    width: 90%;
-    max-width: 600px;
-    border: none;
     text-align: center;
-    outline: none;
-    font-size: 18px;
-    margin: 20px auto;
-    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
-.active, .collapsible:hover {
-    background-color: #444;
-}
-
-.content {
-    padding: 0 15px;
-    max-width: 600px;
-    margin: auto;
+.letter-content {
     display: none;
-    overflow: hidden;
-    background-color: #fff;
+    max-width: 600px;
+    margin: 10px auto 30px;
+    padding: 20px;
+    background: rgba(255,255,255,0.9);
     color: #333;
     border-radius: 15px;
-    line-height: 1.6;
     text-align: left;
-    padding: 15px;
+    line-height: 1.6;
+    font-size: 16px;
 }
 </style>
 </head>
@@ -228,7 +188,6 @@ section {
 <!-- LOCK SCREEN -->
 <div id="lockScreen">
     <h1>🔐 Private Birthday Surprise</h1>
-    <p>Only Suarabh can unlock this ❤️</p>
     <input type="password" id="password" placeholder="Enter the magic word">
     <button onclick="checkPassword()">Unlock ❤️</button>
     <p id="error"></p>
@@ -238,7 +197,7 @@ section {
 <div id="mainContent">
 
 <section>
-    <h1>Happy Birthday Suarabh ❤️</h1>
+    <h1>Happy Birthday Saurabh ❤️</h1>
     <p>You are my favorite chapter in my life 💕</p>
 </section>
 
@@ -256,92 +215,75 @@ section {
 
 <!-- FLIP NOTES -->
 <section>
-    <h2>💌 Little Notes for You 💌</h2>
-    <div class="notes-grid">
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">You are my safe place ❤️</div>
-            </div>
-        </div>
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">In every lifetime, I would still choose you.</div>
-            </div>
-        </div>
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">With you, even silence feels peaceful.</div>
-            </div>
-        </div>
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Tap 💕</div>
-                <div class="flip-card-back">You are my favorite part of every day.</div>
-            </div>
+<h2>💌 Little Notes 💌</h2>
+<div class="notes-grid">
+    <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">Tap 💕</div>
+            <div class="flip-card-back">You are my safe place ❤️</div>
         </div>
     </div>
+
+    <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">Tap 💕</div>
+            <div class="flip-card-back">In every lifetime, I would still choose you.</div>
+        </div>
+    </div>
+
+    <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">Tap 💕</div>
+            <div class="flip-card-back">With you, even silence feels peaceful.</div>
+        </div>
+    </div>
+
+    <div class="flip-card" onclick="flipNote(this)">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">Tap 💕</div>
+            <div class="flip-card-back">You are my favorite part of every day.</div>
+        </div>
+    </div>
+</div>
 </section>
 
-<!-- FIRST IMAGE -->
+<!-- PHOTOS -->
 <section>
-    <h2>✨ The First Time We Met ✨</h2>
-    <div class="photo">
-        <img src="first.jpg">
-    </div>
+<h2>✨ The First Time We Met ✨</h2>
+<div class="photo"><img src="first.jpg"></div>
 </section>
 
-<!-- NOW IMAGE -->
 <section>
-    <h2>💑 Us Now 💑</h2>
-    <div class="photo">
-        <img src="now.jpg">
-    </div>
+<h2>💑 Us Now 💑</h2>
+<div class="photo"><img src="now.jpg"></div>
 </section>
 
-<!-- COLLAPSIBLE LETTER -->
+<!-- CLICKABLE LETTER -->
 <section>
-    <button class="collapsible">Open My Letter 💌</button>
-    <div class="content">
-        Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.
-        A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,
-        how do I even say hello? My heart was racing when the plane landed.<br><br>
+<h2>💌 A Little Letter 💌</h2>
+<div class="letter-grid">
+    <div class="letter-box" onclick="toggleLetter(0)">Click Me</div>
+    <div class="letter-box" onclick="toggleLetter(1)">Click Me</div>
+    <div class="letter-box" onclick="toggleLetter(2)">Click Me</div>
+</div>
 
-        But then I saw you, sitting there on that bench, and all my fear disappeared.
-        I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.
-        From that moment, everything felt like a movie.<br><br>
+<div class="letter-content" id="letter-0">
+Saurabh, my baby…<br><br>
+Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.
+A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,
+how do I even say hello? My heart was racing when the plane landed.<br><br>
 
-        Thank you for taking care of me every single second,
-        for tolerating my moods and my anger,
-        and for always being my safe place — my home ❤️
-    </div>
-</section>
+But then I saw you, sitting there on that bench, and all my fear disappeared.
+I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.
+From that moment, everything felt like a movie.<br><br>
 
-<!-- 3 SMALL LOVE BOXES -->
-<section>
-    <h2>💖 Click on Me 💖</h2>
-    <div class="love-boxes">
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Click on me</div>
-                <div class="flip-card-back">I love you ❤️</div>
-            </div>
-        </div>
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Click on me</div>
-                <div class="flip-card-back">I love you ❤️</div>
-            </div>
-        </div>
-        <div class="flip-card" onclick="flipNote(this)">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">Click on me</div>
-                <div class="flip-card-back">I love you ❤️</div>
-            </div>
-        </div>
-    </div>
+Thank you for taking care of me every single second,
+for tolerating my moods and my anger,
+and for always being my safe place — my home
+</div>
+
+<div class="letter-content" id="letter-1">I Love You ❤️</div>
+<div class="letter-content" id="letter-2">I Love You ❤️</div>
 </section>
 
 <audio id="bgMusic" loop>
@@ -353,17 +295,29 @@ section {
 <script>
 const correctPassword = "my men";
 
-/* FLIP NOTE FUNCTION */
+/* UNLOCK */
+function checkPassword() {
+    const entered = document.getElementById("password").value.toLowerCase().trim();
+    if (entered === correctPassword) {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("bgMusic").play();
+    } else {
+        document.getElementById("error").innerText = "Wrong password 😜 Try again!";
+    }
+}
+
+/* FLIP NOTE */
 function flipNote(card) {
     card.classList.toggle("flipped");
 }
 
-/* HEARTS */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-    docum
+/* LETTER TOGGLE */
+function toggleLetter(index) {
+    const letter = document.getElementById("letter-" + index);
+    if(letter.style.display === "block") letter.style.display = "none";
+    else letter.style.display = "block";
+}
+</script>
+</body>
+</html>
