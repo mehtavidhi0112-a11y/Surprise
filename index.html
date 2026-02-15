@@ -3,143 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise 🎉</title>
+<title>Birthday Surprise ❤️</title>
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: black;
     overflow-x: hidden;
 }
 
-/* Initial Surprise Box */
-#surpriseBox {
+/* 🔐 LOCK SCREEN */
+#lockScreen {
     height: 100vh;
+    background: url("lock.jpg") center/cover no-repeat;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-#surpriseBox .box {
-    padding: 40px 60px;
-    background: black;
     color: white;
-    font-size: 32px;
-    border: 2px solid white;
+}
+
+#lockScreen input {
+    padding: 12px;
     border-radius: 20px;
+    border: none;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#lockScreen button {
+    padding: 10px 25px;
+    margin-top: 15px;
+    border-radius: 20px;
+    border: none;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-#surpriseBox .box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px white;
+#error {
+    margin-top: 10px;
+    color: #ffdede;
 }
 
-/* Sparkles for birthday text */
-.sparkle {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: sparkleAnim 3s infinite;
-}
-
-@keyframes sparkleAnim {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    50% { transform: translateY(-200px) scale(1.5); opacity: 0.3; }
-    100% { transform: translateY(0) scale(1); opacity: 0; }
-}
-
-/* Main Content */
+/* 💙 MAIN CONTENT */
 #mainContent {
     display: none;
     min-height: 100vh;
-    background: black;
+    background: #02162b;
     color: white;
     text-align: center;
     padding: 40px 20px;
     position: relative;
 }
 
-#mainContent h1 {
-    font-size: 48px;
-    margin-bottom: 30px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Photos */
-.photo-box {
-    width: 90%;
-    max-width: 400px;
-    height: 360px;
-    margin: 20px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid white;
-    cursor: pointer;
-    position: relative;
-}
-
-.photo-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-}
-
-/* Letter */
-.letter-box {
-    background: rgba(0,0,0,0.7);
-    padding: 20px;
-    border-radius: 15px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 600px;
-    cursor: pointer;
-    color: white;
-}
-
-.letter-content {
-    display: none;
-    background: white;
-    color: black;
-    margin-top: 15px;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/* Overlay for full image */
-#imageOverlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
-    text-align: center;
-}
-
-#imageOverlay img {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 20px;
-    object-fit: cover;
-    object-position: top;
-}
-
-#imageOverlay h2 {
-    color: #ff6f91;
-    font-size: 32px;
-    margin-top: 20px;
-}
-
-/* Hearts */
+/* HEARTS */
 .heart {
     position: fixed;
     bottom: -10px;
@@ -152,94 +68,131 @@ body {
     from { transform: translateY(0); opacity: 1; }
     to { transform: translateY(-100vh); opacity: 0; }
 }
+
+/* COUNTER */
+.counter {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 🔲 SURPRISE BOX */
+.surprise-box {
+    width: 250px;
+    padding: 20px;
+    background: black;
+    color: white;
+    margin: 20px auto;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 🌟 SPARKLING OVERLAY */
+#sparkOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: spark 2s linear infinite;
+}
+
+@keyframes spark {
+    0% { transform: translateY(0) scale(0.5); opacity: 1; }
+    100% { transform: translateY(-500px) scale(1); opacity: 0; }
+}
+
+/* 📸 IMAGE BOXES */
+.image-box {
+    width: 90%;
+    max-width: 400px;
+    height: 360px;
+    margin: 20px auto;
+    background: black;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 20px;
+}
+
+/* LETTER BOX */
+.letter-box {
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    cursor: pointer;
+}
+
+.letter-content {
+    display: none;
+    background: white;
+    color: black;
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    line-height: 1.7;
+}
 </style>
 </head>
 <body>
 
-<!-- Initial Surprise Box -->
-<div id="surpriseBox">
-    <div class="box" id="openSurprise">Here is your surprise 🎁</div>
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+    <h1>🔐 Birthday Surprise</h1>
+    <input id="password" type="password" placeholder="Enter password">
+    <button id="unlockBtn">Unlock ❤️</button>
+    <p id="error"></p>
 </div>
 
-<!-- Main Content -->
+<!-- MAIN CONTENT -->
 <div id="mainContent">
-    <h1 id="birthdayText">Happy Birthday Saurabh ❤️</h1>
+    <div class="counter">❤️ 7 Months & 10 Days Together ❤️</div>
 
-    <!-- First Meet Image -->
-    <div class="photo-box" id="firstMeetBox">
-        <img src="first.jpg" alt="First Meet">
-    </div>
+    <!-- Surprise Box -->
+    <div class="surprise-box" id="surpriseBox">Here is your surprise begins 🎉</div>
 
-    <!-- Letter -->
-    <div class="letter-box" id="letterBox">
-        Click to read my letter ❤️
-        <div class="letter-content" id="letter">
-Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.
-A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,
-how do I even say hello? My heart was racing when the plane landed.<br><br>
+    <!-- First Meet Box -->
+    <div class="image-box" id="firstBox">Click for First Meet</div>
 
-But then I saw you, sitting there on that bench, and all my fear disappeared.
-I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.
-From that moment, everything felt like a movie.<br><br>
-
-Thank you for taking care of me every single second,
-for tolerating my moods and my anger,
-and for always being my safe place — my home ❤️
-        </div>
-    </div>
-
-    <!-- Music -->
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-</div>
-
-<!-- Full Image Overlay -->
-<div id="imageOverlay" onclick="closeOverlay()">
-    <img src="first.jpg" id="overlayImg">
-    <h2>This is how much I love you ❤️</h2>
-</div>
-
-<script>
-// Sparkle colors
-const colors = ["#ff0000","#ff7f00","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff"];
-
-function createSparkle() {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    sparkle.style.left = Math.random() * window.innerWidth + 'px';
-    sparkle.style.top = Math.random() * window.innerHeight + 'px';
-    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    sparkle.style.width = sparkle.style.height = Math.random() * 6 + 4 + 'px';
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 3000);
-}
-
-// Show main content after click
-document.getElementById("openSurprise").onclick = function() {
-    document.getElementById("surpriseBox").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-    setInterval(createSparkle, 200);
-    document.getElementById("bgMusic").play();
-};
-
-// Toggle letter
-document.getElementById("letterBox").onclick = function() {
-    const l = document.getElementById("letter");
-    l.style.display = l.style.display === "block" ? "none" : "block";
-};
-
-// Open overlay when clicking first meet image
-document.getElementById("firstMeetBox").onclick = function(e){
-    e.stopPropagation();
-    document.getElementById("imageOverlay").style.display = "flex";
-};
-
-// Close overlay
-function closeOverlay(){
-    document.getElementById("imageOverlay").style.display = "none";
-}
-</script>
-
-</body>
-</html>
+    <!-- Us Now Box -->
+    <div cla
