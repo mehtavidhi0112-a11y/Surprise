@@ -4,13 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Surprise ❤️</title>
+
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #02162b; /* dark blue background */
+    color: white;
+    overflow-x: hidden;
 }
 
-/* LOCK SCREEN */
+/* 🔐 LOCK SCREEN */
 #lockScreen {
     height: 100vh;
     background: url("lock.jpg") center/cover no-repeat;
@@ -27,6 +31,7 @@ body {
     border-radius: 20px;
     border: none;
     margin-top: 15px;
+    text-align: center;
 }
 
 #lockScreen button {
@@ -35,6 +40,8 @@ body {
     border-radius: 20px;
     border: none;
     cursor: pointer;
+    background: white;
+    color: #333;
 }
 
 #error {
@@ -46,69 +53,79 @@ body {
 #mainContent {
     display: none;
     min-height: 100vh;
-    background: #02162b;
-    color: white;
-    text-align: center;
     padding: 40px 20px;
+    text-align: center;
     position: relative;
 }
 
+/* Floating white hearts background */
 #mainContent::before {
     content: "🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
     position: absolute;
     inset: 0;
-    opacity: 0.04;
+    font-size: 18px;
+    opacity: 0.03;
     pointer-events: none;
 }
 
-#mainContent > * {
-    position: relative;
-    z-index: 1;
-}
+#mainContent > * { position: relative; z-index: 1; }
 
-/* CLICK BOXES */
-.click-boxes {
-    display: flex;
+/* PHOTO MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
     justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 50px;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
 }
 
-.click-box {
-    background: #111;
-    padding: 30px 40px;
-    border-radius: 15px;
+.modal-img {
+    width: 90%;
+    max-width: 500px;
+    height: 360px;
+    object-fit: cover;
+    object-position: center top; /* face visible */
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.modal-text {
+    margin-top: 15px;
+    font-size: 20px;
+    color: white;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
     cursor: pointer;
     color: white;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transition: transform 0.2s, background 0.2s;
 }
 
-.click-box:hover {
-    transform: scale(1.05);
-    background: #333;
-}
-
-/* LETTER */
+/* LETTER BOX */
 .letter-box {
     background: rgba(0,0,0,0.7);
     padding: 20px;
     border-radius: 15px;
-    margin-top: 40px;
+    margin: 30px auto;
+    max-width: 600px;
     cursor: pointer;
+    text-align: center;
 }
 
 .letter-content {
     display: none;
     background: white;
     color: black;
-    margin-top: 15px;
     padding: 20px;
     border-radius: 10px;
-    line-height: 1.6;
+    margin-top: 15px;
+    line-height: 1.7;
 }
 
 /* LOVE BOXES */
@@ -120,75 +137,33 @@ body {
 }
 
 .love-box {
-    width: 90px;
-    height: 70px;
+    width: 120px;
+    height: 80px;
     background: black;
     color: white;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 10px;
 }
 
-/* FLOATING HEARTS */
+/* HEARTS */
 .heart {
     position: fixed;
     bottom: -10px;
-    animation: rise 5s linear;
     font-size: 18px;
     color: white;
+    animation: rise 5s linear;
 }
 
 @keyframes rise {
     from { transform: translateY(0); opacity: 1; }
     to { transform: translateY(-100vh); opacity: 0; }
 }
-
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    text-align: center;
-    padding: 20px;
-}
-
-.modal-content {
-    background: transparent;
-    color: white;
-    max-width: 700px;
-    width: 95%;
-    border-radius: 15px;
-    position: relative;
-}
-
-.modal-content img {
-    width: 100%;
-    max-height: 80vh;
-    object-fit: cover;
-    object-position: top center; /* face visible */
-    border-radius: 20px;
-    margin-top: 15px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    color: white;
-}
 </style>
 </head>
+
 <body>
 
 <!-- LOCK SCREEN -->
@@ -201,72 +176,62 @@ body {
 
 <!-- MAIN CONTENT -->
 <div id="mainContent">
-    <h1>Happy Birthday Saurabh ❤️</h1>
 
-    <div class="counter">❤️ 7 Months & 10 Days ❤️</div>
+<h1>Happy Birthday Saurabh ❤️</h1>
+<div class="counter">❤️ 7 Months & 10 Days Together ❤️</div>
 
-    <!-- CLICKABLE BOXES -->
-    <div class="click-boxes">
-        <div class="click-box" id="firstMeet">First Meet</div>
-        <div class="click-box" id="usNow">Us Now</div>
-    </div>
+<!-- LETTER -->
+<div class="letter-box" id="letterBox">
+Click to read my letter ❤️
+<div class="letter-content" id="letter">
+Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.<br><br>
+A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,<br>
+how do I even say hello? My heart was racing when the plane landed.<br><br>
 
-    <!-- LETTER -->
-    <div class="letter-box" id="letterBox">
-        Click to read my letter ❤️
-        <div class="letter-content" id="letter">
-            Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.<br><br>
-            A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,<br>
-            how do I even say hello? My heart was racing when the plane landed.<br><br>
-            But then I saw you, sitting there on that bench, and all my fear disappeared.<br>
-            I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.<br>
-            From that moment, everything felt like a movie.<br><br>
-            Thank you for taking care of me every single second,<br>
-            for tolerating my moods and my anger,<br>
-            and for always being my safe place — my home ❤️
-        </div>
-    </div>
+But then I saw you, sitting there on that bench, and all my fear disappeared.<br>
+I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.<br>
+From that moment, everything felt like a movie.<br><br>
 
-    <!-- LOVE BOXES -->
-    <div class="love-grid">
-        <div class="love-box">I ❤️ U</div>
-        <div class="love-box">I ❤️ U</div>
-        <div class="love-box">I ❤️ U</div>
-    </div>
+Thank you for taking care of me every single second,<br>
+for tolerating my moods and my anger,<br>
+and for always being my safe place — my home ❤️
+</div>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeModal">&times;</span>
-        <div id="modalText" style="font-size:20px; font-weight:bold;"></div>
-        <img id="modalImg" src="">
-    </div>
+<!-- CLICKABLE PHOTO BOXES -->
+<div class="love-grid">
+    <div class="love-box" onclick="openModal('first.jpg','This is how much I love you ❤️')">First Meet</div>
+    <div class="love-box" onclick="openModal('now.jpg','Forever Us ❤️')">Us Now</div>
 </div>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<script>
-window.onload = function () {
-    const correctPassword = "saurabh";
-    const unlockBtn = document.getElementById("unlockBtn");
-    const passwordInput = document.getElementById("password");
-    const lockScreen = document.getElementById("lockScreen");
-    const mainContent = document.getElementById("mainContent");
+</div>
 
-    unlockBtn.onclick = unlock;
-    passwordInput.addEventListener("keydown", function(e){
+<!-- MODAL -->
+<div class="modal" id="imageModal">
+    <span class="modal-close" onclick="closeModal()">×</span>
+    <img id="modalImg" class="modal-img" src="" alt="Special Photo">
+    <div id="modalText" class="modal-text"></div>
+</div>
+
+<script>
+window.onload = function() {
+    const correctPassword = "saurabh";
+
+    // Unlock button
+    document.getElementById("unlockBtn").onclick = unlock;
+    document.getElementById("password").addEventListener("keydown", function(e){
         if(e.key === "Enter") unlock();
     });
 
     function unlock() {
-        const entered = passwordInput.value.trim().toLowerCase();
+        const entered = document.getElementById("password").value.trim().toLowerCase();
         if(entered === correctPassword){
-            lockScreen.style.display = "none";
-            mainContent.style.display = "block";
+            document.getElementById("lockScreen").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
             document.getElementById("bgMusic").play();
             setInterval(createHeart, 700);
         } else {
@@ -276,41 +241,37 @@ window.onload = function () {
 
     // Letter toggle
     document.getElementById("letterBox").onclick = function(){
-        const letter = document.getElementById("letter");
-        letter.style.display = letter.style.display === "block" ? "none" : "block";
+        const l = document.getElementById("letter");
+        l.style.display = l.style.display === "block" ? "none" : "block";
     };
 
-    // Floating hearts
-    function createHeart(){
+    // Hearts
+    function createHeart() {
         const h = document.createElement("div");
         h.className = "heart";
         h.innerHTML = "🤍";
         h.style.left = Math.random()*100 + "vw";
         document.body.appendChild(h);
-        setTimeout(()=> h.remove(),5000);
+        setTimeout(()=> h.remove(), 5000);
     }
 
-    // Modal logic for both images
-    const modal = document.getElementById("modal");
-    const modalText = document.getElementById("modalText");
-    const modalImg = document.getElementById("modalImg");
-    const closeModal = document.getElementById("closeModal");
-
-    document.getElementById("firstMeet").onclick = function(){
-        modal.style.display = "flex";
-        modalText.innerHTML = "This is how much I love you ❤️";
-        modalImg.src = "first.jpg";
-    };
-
-    document.getElementById("usNow").onclick = function(){
-        modal.style.display = "flex";
-        modalText.innerHTML = "Look at us now 😍";
-        modalImg.src = "now.jpg";
-    };
-
-    closeModal.onclick = function(){ modal.style.display = "none"; };
-    window.onclick = function(e){ if(e.target == modal) modal.style.display = "none"; };
 };
+
+// Open modal
+function openModal(src, text){
+    const modal = document.getElementById("imageModal");
+    const img = document.getElementById("modalImg");
+    const modalText = document.getElementById("modalText");
+    img.src = src;
+    modalText.innerText = text;
+    modal.style.display = "flex";
+}
+
+// Close modal
+function closeModal(){
+    document.getElementById("imageModal").style.display = "none";
+}
 </script>
+
 </body>
 </html>
