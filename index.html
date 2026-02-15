@@ -19,8 +19,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     color: white;
+    text-align: center;
 }
 
 #lockScreen input {
@@ -44,7 +44,7 @@ body {
     color: #ffdede;
 }
 
-/* 💙 MAIN CONTENT */
+/* 🎵 MAIN CONTENT */
 #mainContent {
     display: none;
     min-height: 100vh;
@@ -55,7 +55,122 @@ body {
     position: relative;
 }
 
-/* HEARTS */
+/* 🎵 MUSIC */
+audio {
+    display: none;
+}
+
+/* 🌟 SURPRISE BOX */
+#surpriseBox {
+    background: black;
+    color: white;
+    padding: 25px 40px;
+    margin: 30px auto;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ✨ SPARKLES */
+#sparkOverlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: sparkle 1s linear infinite;
+}
+
+@keyframes sparkle {
+    0% {opacity:1; transform: translateY(0) scale(1);}
+    50% {opacity:0.5; transform: translateY(-50px) scale(1.2);}
+    100% {opacity:0; transform: translateY(-100px) scale(0);}
+}
+
+/* 🌄 IMAGE BOXES */
+.image-box {
+    background: black;
+    padding: 20px;
+    margin: 25px auto;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 200px;
+    color: white;
+    font-weight: bold;
+}
+
+/* 📸 IMAGE OVERLAYS */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* 🖤 LETTER BOX */
+.letter-box {
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 30px auto;
+    cursor: pointer;
+    width: 250px;
+    font-weight: bold;
+}
+
+.letter-content {
+    display: none;
+    background: white;
+    color: black;
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+/* ❤️ LOVE BOXES */
+.love-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.love-box {
+    width: 90px;
+    height: 70px;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* 🤍 FLOATING HEARTS */
 .heart {
     position: fixed;
     bottom: -10px;
@@ -68,131 +183,126 @@ body {
     from { transform: translateY(0); opacity: 1; }
     to { transform: translateY(-100vh); opacity: 0; }
 }
-
-/* COUNTER */
-.counter {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-/* 🔲 SURPRISE BOX */
-.surprise-box {
-    width: 250px;
-    padding: 20px;
-    background: black;
-    color: white;
-    margin: 20px auto;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* 🌟 SPARKLING OVERLAY */
-#sparkOverlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: white;
-    font-size: 36px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000;
-    overflow: hidden;
-}
-
-.sparkle {
-    position: absolute;
-    font-size: 20px;
-    animation: spark 2s linear infinite;
-}
-
-@keyframes spark {
-    0% { transform: translateY(0) scale(0.5); opacity: 1; }
-    100% { transform: translateY(-500px) scale(1); opacity: 0; }
-}
-
-/* 📸 IMAGE BOXES */
-.image-box {
-    width: 90%;
-    max-width: 400px;
-    height: 360px;
-    margin: 20px auto;
-    background: black;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-}
-
-.image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 20px;
-}
-
-/* LETTER BOX */
-.letter-box {
-    background: rgba(0,0,0,0.7);
-    padding: 20px;
-    border-radius: 15px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 600px;
-    cursor: pointer;
-}
-
-.letter-content {
-    display: none;
-    background: white;
-    color: black;
-    margin-top: 15px;
-    padding: 20px;
-    border-radius: 12px;
-    line-height: 1.7;
-}
 </style>
 </head>
+
 <body>
 
 <!-- LOCK SCREEN -->
 <div id="lockScreen">
-    <h1>🔐 Birthday Surprise</h1>
-    <input id="password" type="password" placeholder="Enter password">
+    <h1>🔐 Private Birthday Surprise</h1>
+    <input id="password" type="password" placeholder="Enter the magic word">
     <button id="unlockBtn">Unlock ❤️</button>
     <p id="error"></p>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent">
-    <div class="counter">❤️ 7 Months & 10 Days Together ❤️</div>
 
-    <!-- Surprise Box -->
-    <div class="surprise-box" id="surpriseBox">Here is your surprise begins 🎉</div>
+    <!-- SURPRISE BOX -->
+    <div id="surpriseBox">Here is ur surprise begins 🎉</div>
+    <div id="sparkOverlay"></div>
 
-    <!-- First Meet Box -->
-    <div class="image-box" id="firstBox">Click for First Meet</div>
+    <!-- IMAGE & LETTER OPTIONS -->
+    <div class="image-box" id="firstBox">First Time We Met</div>
+    <div class="image-box" id="nowBox">Us Now</div>
+    <div class="letter-box" id="letterBox">Open My Letter ❤️
+        <div class="letter-content" id="letter">
+            Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.<br><br>
+            A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,<br>
+            how do I even say hello? My heart was racing when the plane landed.<br><br>
+            But then I saw you, sitting there on that bench, and all my fear disappeared.<br>
+            I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.<br>
+            From that moment, everything felt like a movie.<br><br>
+            Thank you for taking care of me every single second,<br>
+            for tolerating my moods and my anger,<br>
+            and for always being my safe place — my home ❤️
+        </div>
+    </div>
 
-    <!-- Us Now Box -->
-    <div cla
+    <!-- IMAGE OVERLAYS -->
+    <div class="overlay" id="firstOverlay">
+        <img src="first.jpg" alt="First Meet">
+        <p style="color:white; text-align:center; font-size:22px;">This is how much I love you ❤️</p>
+    </div>
+
+    <div class="overlay" id="nowOverlay">
+        <img src="now.jpg" alt="Us Now">
+        <p style="color:white; text-align:center; font-size:22px;">Together always ❤️</p>
+    </div>
+
+    <!-- LOVE BOXES -->
+    <div class="love-grid">
+        <div class="love-box" onclick="alert('I Love You ❤️')">I ❤️ U</div>
+        <div class="love-box" onclick="alert('I Love You ❤️')">I ❤️ U</div>
+        <div class="love-box" onclick="alert('I Love You ❤️')">I ❤️ U</div>
+    </div>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+const correctPassword = "saurabh";
+
+function unlock(){
+    const entered = document.getElementById("password").value.trim().toLowerCase();
+    if(entered === correctPassword){
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("bgMusic").play();
+        startHearts();
+    } else {
+        document.getElementById("error").innerText = "Wrong password 💔";
+    }
+}
+
+/* Trigger unlock */
+document.getElementById("unlockBtn").addEventListener("click", unlock);
+document.getElementById("password").addEventListener("keyup", function(e){
+    if(e.key === "Enter") unlock();
+});
+
+/* Hearts */
+function startHearts(){
+    setInterval(()=>{
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "🤍";
+        h.style.left = Math.random()*100 + "vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),5000);
+    },700);
+}
+
+/* Sparkle surprise */
+document.getElementById("surpriseBox").onclick = function(){
+    const overlay = document.getElementById("sparkOverlay");
+    overlay.style.display = "flex";
+    for(let i=0;i<50;i++){
+        const s = document.createElement("div");
+        s.className = "sparkle";
+        s.style.left = Math.random()*100 + "vw";
+        s.style.top = Math.random()*100 + "vh";
+        s.style.color = `hsl(${Math.random()*360},100%,70%)`;
+        overlay.appendChild(s);
+    }
+    setTimeout(()=>overlay.style.display="none",4000);
+};
+
+/* IMAGE BOXES */
+document.getElementById("firstBox").onclick = ()=>document.getElementById("firstOverlay").style.display="flex";
+document.getElementById("nowBox").onclick = ()=>document.getElementById("nowOverlay").style.display="flex";
+document.querySelectorAll(".overlay").forEach(o=>o.onclick=()=>o.style.display="none");
+
+/* LETTER */
+document.getElementById("letterBox").onclick = ()=>{
+    const l = document.getElementById("letter");
+    l.style.display = l.style.display==="block"?"none":"block";
+};
+</script>
+
+</body>
+</html>
