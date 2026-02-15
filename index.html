@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Saurabh ❤️</title>
-
+<title>Birthday Surprise ❤️</title>
 <style>
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    overflow-x: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/* 🔐 LOCK SCREEN */
+/* LOCK SCREEN */
 #lockScreen {
     height: 100vh;
     background: url("lock.jpg") center/cover no-repeat;
@@ -29,7 +27,6 @@ body {
     border-radius: 20px;
     border: none;
     margin-top: 15px;
-    text-align: center;
 }
 
 #lockScreen button {
@@ -37,28 +34,26 @@ body {
     margin-top: 15px;
     border-radius: 20px;
     border: none;
-    background: white;
-    color: #333;
     cursor: pointer;
 }
 
 #error {
     margin-top: 10px;
-    color: #ffdddd;
+    color: #ffdede;
 }
 
-/* 💙 MAIN CONTENT */
+/* MAIN CONTENT */
 #mainContent {
     display: none;
     min-height: 100vh;
-    background: #02162b; /* dark blue */
+    background: #02162b;
     color: white;
     text-align: center;
     padding: 40px 20px;
     position: relative;
 }
 
-/* subtle hearts background */
+/* subtle hearts */
 #mainContent::before {
     content: "🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
     position: absolute;
@@ -75,117 +70,39 @@ body {
 /* PHOTOS */
 .photo {
     width: 90%;
-    max-width: 420px;
+    max-width: 400px;
     height: 360px;
     margin: 30px auto;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 .photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center; /* face visible */
-}
-
-/* CARTOON */
-.cartoon {
-    width: 90%;
-    max-width: 420px;
-    height: 280px;
-    margin: 25px auto;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.cartoon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* COUNTER */
-.counter {
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-/* FLIP NOTES */
-.notes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 500px;
-    margin: auto;
-}
-
-.flip-card {
-    width: 220px;
-    height: 140px;
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.flip-card-inner {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.flip-card.flipped .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-    position: absolute;
-    inset: 0;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backface-visibility: hidden;
-    font-size: 16px;
-    padding: 10px;
-}
-
-.flip-card-front {
-    background: rgba(0,0,0,0.6);
-    color: white;
-}
-
-.flip-card-back {
-    background: rgba(255,255,255,0.9);
-    color: #333;
-    transform: rotateY(180deg);
-    font-weight: 600;
-    text-align: center;
+    object-position: top center;
 }
 
 /* LETTER */
 .letter-box {
-    max-width: 600px;
-    margin: 30px auto;
     background: rgba(0,0,0,0.7);
-    color: white;
     padding: 20px;
     border-radius: 15px;
+    margin-top: 40px;
     cursor: pointer;
 }
 
 .letter-content {
     display: none;
-    margin-top: 15px;
     background: white;
-    color: #333;
+    color: black;
+    margin-top: 15px;
     padding: 20px;
-    border-radius: 12px;
-    line-height: 1.7;
+    border-radius: 10px;
+    line-height: 1.6;
 }
 
 /* LOVE BOXES */
@@ -193,33 +110,67 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin: 30px 0;
+    margin-top: 30px;
 }
 
 .love-box {
-    width: 100px;
-    height: 80px;
+    width: 90px;
+    height: 70px;
     background: black;
     color: white;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 /* HEARTS */
 .heart {
     position: fixed;
     bottom: -10px;
+    animation: rise 5s linear;
     font-size: 18px;
-    animation: rise 5s linear infinite;
     color: white;
 }
 
 @keyframes rise {
     from { transform: translateY(0); opacity: 1; }
     to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    text-align: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    color: black;
+    max-width: 500px;
+    width: 90%;
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -228,157 +179,122 @@ body {
 <!-- LOCK SCREEN -->
 <div id="lockScreen">
     <h1>🔐 Birthday Surprise</h1>
-    <input type="password" id="password" placeholder="Enter password">
+    <input id="password" type="password" placeholder="Enter password">
     <button id="unlockBtn">Unlock ❤️</button>
     <p id="error"></p>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent">
+    <h1>Happy Birthday Saurabh ❤️</h1>
 
-<section>
-<h1>Happy Birthday Saurabh ❤️</h1>
-<p>You are my favorite chapter in my life 💕</p>
-</section>
+    <div class="photo" id="firstPhoto">
+        <img src="first.jpg" alt="First Time We Met">
+    </div>
 
-<section>
-<div class="counter">❤️ 7 Months & 10 Days ❤️</div>
-</section>
+    <div class="photo" id="nowPhoto">
+        <img src="now.jpg" alt="Us Now">
+    </div>
 
-<section>
-<div class="cartoon">
-<img src="cartoon.png">
-</div>
-</section>
-
-<!-- FLIP NOTES -->
-<section>
-<h2>💌 Little Notes 💌</h2>
-<div class="notes-grid">
-    <div class="flip-card" onclick="flipNote(this)">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">Tap 💕</div>
-            <div class="flip-card-back">You are my safe place ❤️</div>
+    <div class="letter-box" id="letterBox">
+        Click to read my letter ❤️
+        <div class="letter-content" id="letter">
+            Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.<br><br>
+            A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,<br>
+            how do I even say hello? My heart was racing when the plane landed.<br><br>
+            But then I saw you, sitting there on that bench, and all my fear disappeared.<br>
+            I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.<br>
+            From that moment, everything felt like a movie.<br><br>
+            Thank you for taking care of me every single second,<br>
+            for tolerating my moods and my anger,<br>
+            and for always being my safe place — my home ❤️
         </div>
     </div>
 
-    <div class="flip-card" onclick="flipNote(this)">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">Tap 💕</div>
-            <div class="flip-card-back">In every lifetime, I would still choose you.</div>
-        </div>
+    <div class="love-grid">
+        <div class="love-box">I ❤️ U</div>
+        <div class="love-box">I ❤️ U</div>
+        <div class="love-box">I ❤️ U</div>
     </div>
 
-    <div class="flip-card" onclick="flipNote(this)">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">Tap 💕</div>
-            <div class="flip-card-back">With you, even silence feels peaceful.</div>
-        </div>
-    </div>
+</div>
 
-    <div class="flip-card" onclick="flipNote(this)">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">Tap 💕</div>
-            <div class="flip-card-back">You are my favorite part of every day.</div>
-        </div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <div id="modalText"></div>
     </div>
 </div>
-</section>
-
-<!-- FIRST IMAGE -->
-<section>
-<h2>✨ The First Time We Met ✨</h2>
-<div class="photo" onclick="window.location.href='first.html'">
-<img src="first.jpg" alt="First Time We Met">
-</div>
-<p>Click the photo to see a surprise ❤️</p>
-</section>
-
-<!-- NOW IMAGE -->
-<section>
-<h2>💑 Us Now 💑</h2>
-<div class="photo" onclick="window.location.href='now.html'">
-<img src="now.jpg" alt="Us Now">
-</div>
-<p>Click the photo to open our love letter 💌</p>
-</section>
-
-<!-- LETTER -->
-<section>
-<div class="letter-box" onclick="toggleLetter()">
-Click to open my letter ❤️
-<div id="letter" class="letter-content">
-<p>Do you remember the very first time I came to meet you? I was a nervous wreck on that flight.<br>
-A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,<br>
-how do I even say hello? My heart was racing when the plane landed.<br><br>
-
-But then I saw you, sitting there on that bench, and all my fear disappeared.<br>
-I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.<br>
-From that moment, everything felt like a movie.<br><br>
-
-Thank you for taking care of me every single second,<br>
-for tolerating my moods and my anger,<br>
-and for always being my safe place — my home ❤️</p>
-</div>
-</div>
-</section>
-
-<!-- LOVE BOXES -->
-<section>
-<div class="love-grid">
-    <div class="love-box" onclick="alert('I Love You ❤️')">Click Me</div>
-    <div class="love-box" onclick="alert('I Love You ❤️')">Click Me</div>
-    <div class="love-box" onclick="alert('I Love You ❤️')">Click Me</div>
-</div>
-</section>
 
 <audio id="bgMusic" loop>
-<source src="music.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-</div>
-
 <script>
-const correctPassword = "saurabh";
+window.onload = function () {
+    const correctPassword = "saurabh";
+    const unlockBtn = document.getElementById("unlockBtn");
+    const passwordInput = document.getElementById("password");
+    const lockScreen = document.getElementById("lockScreen");
+    const mainContent = document.getElementById("mainContent");
 
-/* UNLOCK */
-document.getElementById("unlockBtn").addEventListener("click", unlock);
-document.getElementById("password").addEventListener("keydown", function(e){
-    if(e.key === "Enter") unlock();
-});
+    unlockBtn.onclick = unlock;
+    passwordInput.addEventListener("keydown", function(e){
+        if (e.key === "Enter") unlock();
+    });
 
-function unlock() {
-    const entered = document.getElementById("password").value.trim().toLowerCase();
-    if(entered === correctPassword){
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        document.getElementById("bgMusic").play();
-        setInterval(createHeart, 700);
-    } else {
-        document.getElementById("error").innerText = "Wrong password 💔 Try again!";
+    function unlock() {
+        const entered = passwordInput.value.trim().toLowerCase();
+        if(entered === correctPassword){
+            lockScreen.style.display = "none";
+            mainContent.style.display = "block";
+            document.getElementById("bgMusic").play();
+            setInterval(createHeart, 700);
+        } else {
+            document.getElementById("error").innerText = "Wrong password 💔";
+        }
     }
-}
 
-/* FLIP NOTES */
-function flipNote(card){
-    card.classList.toggle("flipped");
-}
+    document.getElementById("letterBox").onclick = function(){
+        const letter = document.getElementById("letter");
+        letter.style.display = letter.style.display === "block" ? "none" : "block";
+    };
 
-/* LETTER TOGGLE */
-function toggleLetter(){
-    const letter = document.getElementById("letter");
-    letter.style.display = letter.style.display === "block" ? "none" : "block";
-}
+    function createHeart(){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "🤍";
+        h.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(h);
+        setTimeout(()=> h.remove(),5000);
+    }
 
-/* HEARTS */
-function createHeart(){
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "🤍";
-    h.style.left = Math.random()*100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(), 5000);
-}
+    // MODAL LOGIC
+    const modal = document.getElementById("modal");
+    const modalText = document.getElementById("modalText");
+    const closeModal = document.getElementById("closeModal");
+
+    document.getElementById("firstPhoto").onclick = function(){
+        modal.style.display = "flex";
+        modalText.innerHTML = "This is how much I love you ❤️";
+    };
+
+    document.getElementById("nowPhoto").onclick = function(){
+        modal.style.display = "flex";
+        modalText.innerHTML = "Look at us now 😍";
+    };
+
+    closeModal.onclick = function(){
+        modal.style.display = "none";
+    };
+
+    window.onclick = function(e){
+        if(e.target == modal){
+            modal.style.display = "none";
+        }
+    };
+};
 </script>
 
 </body>
