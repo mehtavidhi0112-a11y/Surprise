@@ -53,7 +53,6 @@ body {
     position: relative;
 }
 
-/* subtle hearts */
 #mainContent::before {
     content: "🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
     position: absolute;
@@ -67,23 +66,30 @@ body {
     z-index: 1;
 }
 
-/* PHOTOS */
-.photo {
-    width: 90%;
-    max-width: 400px;
-    height: 360px;
-    margin: 30px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+/* CLICK BOXES */
+.click-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 50px;
 }
 
-.photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
+.click-box {
+    background: #111;
+    padding: 30px 40px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.click-box:hover {
+    transform: scale(1.05);
+    background: #333;
 }
 
 /* LETTER */
@@ -125,7 +131,7 @@ body {
     border-radius: 10px;
 }
 
-/* HEARTS */
+/* FLOATING HEARTS */
 .heart {
     position: fixed;
     bottom: -10px;
@@ -147,7 +153,7 @@ body {
     left:0;
     width:100%;
     height:100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -156,21 +162,30 @@ body {
 }
 
 .modal-content {
-    background: white;
-    color: black;
-    max-width: 500px;
-    width: 90%;
-    padding: 25px;
+    background: transparent;
+    color: white;
+    max-width: 700px;
+    width: 95%;
     border-radius: 15px;
     position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: cover;
+    object-position: top center; /* face visible */
+    border-radius: 20px;
+    margin-top: 15px;
 }
 
 .close-btn {
     position: absolute;
     top: 10px;
     right: 15px;
-    font-size: 22px;
+    font-size: 28px;
     cursor: pointer;
+    color: white;
 }
 </style>
 </head>
@@ -188,14 +203,15 @@ body {
 <div id="mainContent">
     <h1>Happy Birthday Saurabh ❤️</h1>
 
-    <div class="photo" id="firstPhoto">
-        <img src="first.jpg" alt="First Time We Met">
+    <div class="counter">❤️ 7 Months & 10 Days ❤️</div>
+
+    <!-- CLICKABLE BOXES -->
+    <div class="click-boxes">
+        <div class="click-box" id="firstMeet">First Meet</div>
+        <div class="click-box" id="usNow">Us Now</div>
     </div>
 
-    <div class="photo" id="nowPhoto">
-        <img src="now.jpg" alt="Us Now">
-    </div>
-
+    <!-- LETTER -->
     <div class="letter-box" id="letterBox">
         Click to read my letter ❤️
         <div class="letter-content" id="letter">
@@ -211,22 +227,24 @@ body {
         </div>
     </div>
 
+    <!-- LOVE BOXES -->
     <div class="love-grid">
         <div class="love-box">I ❤️ U</div>
         <div class="love-box">I ❤️ U</div>
         <div class="love-box">I ❤️ U</div>
     </div>
-
 </div>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <span class="close-btn" id="closeModal">&times;</span>
-        <div id="modalText"></div>
+        <div id="modalText" style="font-size:20px; font-weight:bold;"></div>
+        <img id="modalImg" src="">
     </div>
 </div>
 
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -241,7 +259,7 @@ window.onload = function () {
 
     unlockBtn.onclick = unlock;
     passwordInput.addEventListener("keydown", function(e){
-        if (e.key === "Enter") unlock();
+        if(e.key === "Enter") unlock();
     });
 
     function unlock() {
@@ -256,46 +274,43 @@ window.onload = function () {
         }
     }
 
+    // Letter toggle
     document.getElementById("letterBox").onclick = function(){
         const letter = document.getElementById("letter");
         letter.style.display = letter.style.display === "block" ? "none" : "block";
     };
 
+    // Floating hearts
     function createHeart(){
         const h = document.createElement("div");
         h.className = "heart";
         h.innerHTML = "🤍";
-        h.style.left = Math.random() * 100 + "vw";
+        h.style.left = Math.random()*100 + "vw";
         document.body.appendChild(h);
         setTimeout(()=> h.remove(),5000);
     }
 
-    // MODAL LOGIC
+    // Modal logic for both images
     const modal = document.getElementById("modal");
     const modalText = document.getElementById("modalText");
+    const modalImg = document.getElementById("modalImg");
     const closeModal = document.getElementById("closeModal");
 
-    document.getElementById("firstPhoto").onclick = function(){
+    document.getElementById("firstMeet").onclick = function(){
         modal.style.display = "flex";
         modalText.innerHTML = "This is how much I love you ❤️";
+        modalImg.src = "first.jpg";
     };
 
-    document.getElementById("nowPhoto").onclick = function(){
+    document.getElementById("usNow").onclick = function(){
         modal.style.display = "flex";
         modalText.innerHTML = "Look at us now 😍";
+        modalImg.src = "now.jpg";
     };
 
-    closeModal.onclick = function(){
-        modal.style.display = "none";
-    };
-
-    window.onclick = function(e){
-        if(e.target == modal){
-            modal.style.display = "none";
-        }
-    };
+    closeModal.onclick = function(){ modal.style.display = "none"; };
+    window.onclick = function(e){ if(e.target == modal) modal.style.display = "none"; };
 };
 </script>
-
 </body>
 </html>
