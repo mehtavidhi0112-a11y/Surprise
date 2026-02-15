@@ -268,4 +268,56 @@ function unlock() {
 
 /* ENTER key support */
 document.getElementById("password").addEventListener("keydown", function(e){
-    if(e.key === "Enter") unl
+    if(e.key === "Enter") unlock();
+});
+document.getElementById("unlockBtn").onclick = unlock;
+
+/* Letter toggle */
+document.getElementById("letterBox").onclick = function () {
+    const l = document.getElementById("letter");
+    l.style.display = l.style.display === "block" ? "none" : "block";
+};
+
+/* Floating hearts */
+function startHearts() {
+    setInterval(createHeart, 700);
+}
+function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "🤍";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+}
+
+/* Surprise box sparkle */
+const surpriseBox = document.getElementById('surpriseBox');
+surpriseBox.onclick = function() {
+    surpriseBox.innerText = "Happy Birthday Saurabh! 🎉";
+    for(let i=0;i<30;i++){
+        const s = document.createElement('div');
+        s.className='sparkle';
+        s.style.setProperty('--x', (Math.random()*500-250)+'px');
+        s.style.setProperty('--y', (Math.random()*500-250)+'px');
+        s.style.left = Math.random()*surpriseBox.offsetWidth + 'px';
+        s.style.top = Math.random()*surpriseBox.offsetHeight + 'px';
+        surpriseBox.appendChild(s);
+        setTimeout(()=>s.remove(),1500);
+    }
+};
+
+/* Open image overlay */
+function openImage(src, caption){
+    const overlay = document.getElementById('overlay');
+    const overlayImg = document.getElementById('overlayImg');
+    const overlayCaption = document.getElementById('overlay-caption');
+    overlayImg.src = src;
+    overlayCaption.innerText = caption;
+    overlay.style.display = 'flex';
+}
+document.getElementById('overlay').onclick = function(){ this.style.display='none'; }
+
+</script>
+</body>
+</html>
