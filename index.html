@@ -2,241 +2,243 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise ❤️</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    font-family: 'Arial', sans-serif;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-body{
-    margin:0;
-    padding:0;
-    background:#020b2d;
-    color:white;
-    overflow-x:hidden;
+/* 🔐 LOCK SCREEN */
+#lockScreen {
+    height: 100vh;
+    background: url("lock.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    backdrop-filter: brightness(0.7);
 }
 
-/* LOCK SCREEN */
-#lockScreen{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    background:#010824;
+#lockScreen input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 15px;
+    text-align: center;
 }
 
-#lockScreen h1{
-    margin-bottom:20px;
+#lockScreen button {
+    padding: 10px 25px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #333;
+    cursor: pointer;
 }
 
-#password{
-    padding:12px;
-    font-size:16px;
-    border:none;
-    border-radius:8px;
-    outline:none;
-    width:200px;
-    text-align:center;
+#error {
+    margin-top: 10px;
+    color: #ffdede;
 }
 
-#unlockBtn{
-    margin-top:15px;
-    padding:10px 25px;
-    font-size:16px;
-    border:none;
-    border-radius:20px;
-    background:white;
-    color:black;
-    cursor:pointer;
+/* 💙 MAIN CONTENT */
+#mainContent {
+    display: none;
+    min-height: 100vh;
+    background: #02162b; /* dark blue */
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
 }
 
-#error{
-    margin-top:10px;
-    color:#ffb3b3;
+/* subtle white hearts background */
+#mainContent::before {
+    content: "🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    pointer-events: none;
 }
 
-/* MAIN CONTENT */
-#mainContent{
-    display:none;
-    padding:30px;
-    text-align:center;
+#mainContent > * {
+    position: relative;
+    z-index: 1;
 }
 
-.images{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-bottom:30px;
+/* PHOTOS */
+.photo {
+    width: 90%;
+    max-width: 420px;
+    height: 360px; /* bigger so face is visible */
+    margin: 30px auto;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.images img{
-    width:220px;
-    height:280px;
-    object-fit:cover;
-    border-radius:15px;
-    border:2px solid white;
-}
-
-/* CLICK BOXES */
-.boxes{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin:25px 0;
-}
-
-.box{
-    width:60px;
-    height:60px;
-    background:black;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    border-radius:8px;
-    font-size:12px;
-}
-
-.box.flipped{
-    background:white;
-    color:black;
-    font-size:14px;
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; /* face visible */
 }
 
 /* LETTER */
-#letterBtn{
-    margin-top:20px;
-    padding:12px 20px;
-    border-radius:20px;
-    border:none;
-    cursor:pointer;
+.letter-box {
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 40px;
+    cursor: pointer;
 }
 
-#letter{
-    display:none;
-    background:#06103f;
-    margin:25px auto;
-    padding:20px;
-    border-radius:15px;
-    max-width:500px;
-    line-height:1.6;
+.letter-content {
+    display: none;
+    background: white;
+    color: black;
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 1.7;
 }
 
-/* HEARTS */
-.heart{
-    position:fixed;
-    bottom:-20px;
-    font-size:22px;
-    animation:floatUp 5s linear forwards;
+/* LOVE BOXES */
+.love-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
 }
 
-@keyframes floatUp{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-100vh);opacity:0;}
+.love-box {
+    width: 90px;
+    height: 70px;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* FLOATING HEARTS */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    animation: rise 5s linear;
+    font-size: 18px;
+    color: white;
+}
+
+@keyframes rise {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100vh); opacity: 0; }
 }
 </style>
 </head>
-
 <body>
 
 <!-- LOCK SCREEN -->
 <div id="lockScreen">
-    <h1>🔒 Enter Password</h1>
-    <input id="password" type="password" placeholder="password">
-    <button id="unlockBtn">Unlock</button>
-    <div id="error"></div>
+    <h1>🔐 Birthday Surprise</h1>
+    <input id="password" type="password" placeholder="Enter password">
+    <button id="unlockBtn">Unlock ❤️</button>
+    <p id="error"></p>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent">
+    <h1>Happy Birthday Saurabh ❤️</h1>
 
-    <h2>💖 First Time We Met & Us Now 💖</h2>
-
-    <div class="images">
-        <!-- REPLACE IMAGE LINKS -->
-        <img src="first-time.jpg" alt="First Time We Met">
-        <img src="us-now.jpg" alt="Us Now">
+    <!-- First Time We Met -->
+    <div class="photo">
+        <img src="first.jpg" alt="First Time We Met">
     </div>
 
-    <div class="boxes">
-        <div class="box" onclick="flipNote(this)">Click</div>
-        <div class="box" onclick="flipNote(this)">Click</div>
-        <div class="box" onclick="flipNote(this)">Click</div>
+    <!-- Us Now -->
+    <div class="photo">
+        <img src="now.jpg" alt="Us Now">
     </div>
 
-    <button id="letterBtn" onclick="toggleLetter()">💌 Open Letter</button>
+    <!-- Letter -->
+    <div class="letter-box" id="letterBox">
+        Click to read my letter ❤️
+        <div class="letter-content" id="letter">
+            Do you remember the very first time I came to meet you?<br><br>
+            I was a nervous wreck on that flight.<br>
+            A hundred thoughts ran through my mind — what if he doesn’t like me, what if I’m not what he expected,<br>
+            how do I even say hello? My heart was racing when the plane landed.<br><br>
 
-    <div id="letter">
-        Do you remember the very first time I came to meet you?  
-        I was a nervous wreck on that flight.  
-        A hundred thoughts ran through my mind — what if he doesn’t like me,  
-        what if I’m not what he expected, how do I even say hello?  
-        My heart was racing when the plane landed.<br><br>
+            But then I saw you, sitting there on that bench, and all my fear disappeared.<br>
+            I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.<br>
+            From that moment, everything felt like a movie.<br><br>
 
-        But then I saw you, sitting there on that bench,  
-        and all my fear disappeared.  
-        I didn’t plan it at all, but I couldn’t stop myself from kissing your cheek right then.  
-        From that moment, everything felt like a movie.<br><br>
-
-        Thank you for taking care of me every single second,  
-        for tolerating my moods and my anger,  
-        and for always being my safe place — my home 🤍
+            Thank you for taking care of me every single second,<br>
+            for tolerating my moods and my anger,<br>
+            and for always being my safe place — my home ❤️
+        </div>
     </div>
 
+    <!-- Black Love Boxes -->
+    <div class="love-grid">
+        <div class="love-box" onclick="alert('I ❤️ U')">Click Me</div>
+        <div class="love-box" onclick="alert('I ❤️ U')">Click Me</div>
+        <div class="love-box" onclick="alert('I ❤️ U')">Click Me</div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 </div>
 
 <script>
-const correctPassword = "saurabh";
+window.onload = function(){
 
-/* BUTTON CLICK */
-document.getElementById("unlockBtn").onclick = checkPassword;
+    const correctPassword = "saurabh";
 
-/* ENTER KEY FIX */
-document.getElementById("password").addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
-        checkPassword();
+    const unlockBtn = document.getElementById("unlockBtn");
+    const passwordInput = document.getElementById("password");
+
+    unlockBtn.onclick = unlock;
+    passwordInput.addEventListener("keydown", function(e){
+        if(e.key === "Enter") unlock();
+    });
+
+    function unlock(){
+        const entered = passwordInput.value.trim().toLowerCase();
+        if(entered === correctPassword){
+            document.getElementById("lockScreen").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+            document.getElementById("bgMusic").play();
+            setInterval(createHeart, 700);
+        } else {
+            document.getElementById("error").innerText = "Wrong password 💔";
+        }
     }
-});
 
-function checkPassword(){
-    const entered = document.getElementById("password").value.trim().toLowerCase();
-    if(entered === correctPassword){
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        startHearts();
-    }else{
-        document.getElementById("error").innerText = "Wrong password 💔";
+    document.getElementById("letterBox").onclick = function(){
+        const l = document.getElementById("letter");
+        l.style.display = l.style.display === "block" ? "none" : "block";
+    };
+
+    function createHeart(){
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "🤍";
+        h.style.left = Math.random()*100 + "vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),5000);
     }
-}
 
-function flipNote(card){
-    card.classList.toggle("flipped");
-    card.innerText = card.classList.contains("flipped") ? "I Love U" : "Click";
-}
-
-function toggleLetter(){
-    const l = document.getElementById("letter");
-    l.style.display = l.style.display === "block" ? "none" : "block";
-}
-
-/* HEARTS */
-function startHearts(){
-    setInterval(createHeart, 700);
-}
-
-function createHeart(){
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "🤍";
-    h.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),5000);
-}
+};
 </script>
 
 </body>
